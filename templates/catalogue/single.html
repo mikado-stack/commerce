@@ -8,7 +8,7 @@
 
 <div class="container">
 {% if messages %}
-<div class="alert alert-warning" alert-{{ message.tags }}" role="alert">
+<div class="alert alert-warning" alert="{{ message.tags }}" role="alert">
 {% for message in messages  %}
   {{message|safe}} - <a href="{% url "account:wishlist" %}" class="alert-link">Your Wishlist</a>.
 {% endfor %}
@@ -44,7 +44,6 @@
             <div class="card-body p-1">
               <h1 class="mb-0 h2 pe-4 pb-4">{{ product.title }}</h1>
               <div class="bg-light">
-
                 {% for image in product.product_image.all %}
                 {% if image.is_feature %}
                 <img class="img-fluid mx-auto d-block" width="200px" alt="Responsive image" src="{{ image.image.url }}"
@@ -58,6 +57,7 @@
               </div>
             </div>
           </div>
+          <p class="mb-0 h5">Category:<a href="{% url 'catalogue:category_list' product.category.slug %}">{{ product.category.name }}</a></p>
         </div>
       </div>
     </div>
